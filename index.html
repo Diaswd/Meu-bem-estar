@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="pt-br" class="">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Meu Bem-Estar: Saúde & Equilíbrio</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+      tailwind.config = {
+        darkMode: 'class',
+        theme: {
+          extend: {
+            borderRadius: {
+              '4xl': '2rem',
+            },
+            colors: {
+              'brand-primary': 'rgb(var(--color-primary) / <alpha-value>)',
+              'brand-primary-dark': 'rgb(var(--color-primary-dark) / <alpha-value>)',
+              'brand-secondary': 'rgb(var(--color-secondary) / <alpha-value>)',
+              'brand-secondary-light': 'rgb(var(--color-secondary-light) / <alpha-value>)',
+              'brand-accent': 'rgb(var(--color-accent) / <alpha-value>)',
+              
+              // Semantic UI Colors
+              'ui-text-primary': 'rgb(var(--color-text-primary) / <alpha-value>)',
+              'ui-text-secondary': 'rgb(var(--color-text-secondary) / <alpha-value>)',
+              'ui-card': 'rgb(var(--color-card-bg) / <alpha-value>)',
+              'ui-card-border': 'rgb(var(--color-card-border) / <alpha-value>)',
+              'ui-input-bg': 'rgb(var(--color-input-bg) / <alpha-value>)',
+              'ui-input-border': 'rgb(var(--color-input-border) / <alpha-value>)',
+            }
+          }
+        }
+      }
+    </script>
+    <style>
+      body {
+        background-color: rgb(var(--color-bg-base));
+        background-image: var(--bg-gradient);
+        background-size: 100% 100%;
+        min-height: 100vh;
+        background-attachment: fixed;
+        transition: background 0.5s ease-in-out;
+      }
+      body.texture-dots {
+        background-image: 
+          radial-gradient(circle at 1px 1px, var(--color-texture-dot, rgba(0,0,0,0.04)) 1px, transparent 0),
+          var(--bg-gradient);
+        background-size: 15px 15px, 100% 100%;
+      }
+      body[data-gender-theme="female"] {
+        --bg-texture-floral: url('https://www.transparenttextures.com/patterns/subtle-floral.png');
+        background-image: var(--bg-texture-floral), var(--bg-gradient);
+        background-size: auto, 100% 100%;
+        background-position: center;
+        background-blend-mode: soft-light;
+      }
+      html.dark body[data-gender-theme="female"] {
+         background-blend-mode: overlay;
+      }
+
+      /* --- COLOR THEME DEFINITIONS --- */
+      
+      /* == Base UI colors (shared unless overridden) == */
+      :root {
+        --color-text-primary: 30 41 59; --color-text-secondary: 71 85 105; --color-card-bg: 255 255 255 / 0.5; --color-card-border: 255 255 255 / 0.7; --color-input-bg: 241 245 249 / 0.7; --color-input-border: 203 213 225; --color-texture-dot: rgba(0,0,0,0.04);
+      }
+      :root.dark {
+        --color-text-primary: 226 232 240; --color-text-secondary: 148 163 184; --color-card-bg: 41 51 69 / 0.4; --color-card-border: 255 255 255 / 0.2; --color-input-bg: 30 41 59 / 0.5; --color-input-border: 51 65 85; --color-texture-dot: rgba(255,255,255,0.04);
+      }
+
+      /* == EMERALD == */
+      :root, :root[data-color-theme="emerald"] {
+        --color-primary: 20 184 166; --color-primary-dark: 15 118 110; --color-secondary: 167 139 250; --color-secondary-light: 221 214 254; --color-accent: 244 114 182;
+        --color-bg-base: 240 253 250; --bg-gradient: linear-gradient(160deg, #d1fae5, #6ee7b7);
+        --color-nav-gradient: linear-gradient(135deg, rgb(var(--color-primary) / 0.7), rgb(var(--color-secondary) / 0.7));
+      }
+      :root.dark, :root.dark[data-color-theme="emerald"] {
+        --color-bg-base: 12 26 24; --bg-gradient: linear-gradient(160deg, #064e3b, #047857);
+        --color-nav-gradient: linear-gradient(135deg, rgb(var(--color-primary) / 0.6), rgb(var(--color-secondary) / 0.6));
+      }
+
+      /* == LAVENDER == */
+      :root[data-color-theme="lavender"] {
+        --color-primary: 139 92 246; --color-primary-dark: 109 40 217; --color-secondary: 52 211 153; --color-secondary-light: 167 243 208; --color-accent: 251 146 60;
+        --color-bg-base: 245 243 255; --bg-gradient: linear-gradient(160deg, #e9d5ff, #c084fc);
+        --color-nav-gradient: linear-gradient(135deg, rgb(var(--color-primary) / 0.7), rgb(var(--color-secondary) / 0.7));
+      }
+      :root.dark[data-color-theme="lavender"] {
+        --color-bg-base: 24 22 37; --bg-gradient: linear-gradient(160deg, #6b21a8, #4c1d95);
+        --color-nav-gradient: linear-gradient(135deg, rgb(var(--color-primary) / 0.6), rgb(var(--color-secondary) / 0.6));
+      }
+      
+      /* == ORANGE == */
+      :root[data-color-theme="orange"] {
+        --color-primary: 249 115 22; --color-primary-dark: 194 65 12; --color-secondary: 96 165 250; --color-secondary-light: 191 219 254; --color-accent: 236 72 153;
+        --color-bg-base: 255 251 235; --bg-gradient: linear-gradient(160deg, #ffedd5, #fb923c);
+        --color-nav-gradient: linear-gradient(135deg, rgb(var(--color-primary) / 0.7), rgb(var(--color-secondary) / 0.7));
+      }
+      :root.dark[data-color-theme="orange"] {
+        --color-bg-base: 36 20 10; --bg-gradient: linear-gradient(160deg, #7c2d12, #9a3412);
+        --color-nav-gradient: linear-gradient(135deg, rgb(var(--color-primary) / 0.6), rgb(var(--color-secondary) / 0.6));
+      }
+
+      /* == BLUE == */
+      :root[data-color-theme="blue"] {
+        --color-primary: 59 130 246; --color-primary-dark: 29 78 216; --color-secondary: 244 114 182; --color-secondary-light: 252 211 241; --color-accent: 250 204 21;
+        --color-bg-base: 239 246 255; --bg-gradient: linear-gradient(160deg, #dbeafe, #93c5fd);
+        --color-nav-gradient: linear-gradient(135deg, rgb(var(--color-primary) / 0.7), rgb(var(--color-secondary) / 0.7));
+      }
+      :root.dark[data-color-theme="blue"] {
+        --color-bg-base: 13 22 42; --bg-gradient: linear-gradient(160deg, #1e3a8a, #1d4ed8);
+        --color-nav-gradient: linear-gradient(135deg, rgb(var(--color-primary) / 0.6), rgb(var(--color-secondary) / 0.6));
+      }
+
+      /* == PINK == */
+      :root[data-color-theme="pink"] {
+        --color-primary: 236 72 153; --color-primary-dark: 190 24 93; --color-secondary: 244 63 94; --color-secondary-light: 254 205 211; --color-accent: 56 189 248;
+        --color-bg-base: 253 242 248; --bg-gradient: linear-gradient(160deg, #fce7f3, #f9a8d4);
+        --color-nav-gradient: linear-gradient(135deg, rgb(var(--color-primary) / 0.7), rgb(var(--color-secondary) / 0.7));
+      }
+      :root.dark[data-color-theme="pink"] {
+        --color-bg-base: 38 2 40; --bg-gradient: linear-gradient(160deg, #86198f, #701a75);
+        --color-nav-gradient: linear-gradient(135deg, rgb(var(--color-primary) / 0.6), rgb(var(--color-secondary) / 0.6));
+      }
+
+      /* == SKY == */
+      :root[data-color-theme="sky"] {
+        --color-primary: 14 165 233; --color-primary-dark: 3 105 161; --color-secondary: 34 211 238; --color-secondary-light: 165 243 252; --color-accent: 251 191 36;
+        --color-bg-base: 240 249 255; --bg-gradient: linear-gradient(160deg, #e0f2fe, #7dd3fc);
+        --color-nav-gradient: linear-gradient(135deg, rgb(var(--color-primary) / 0.7), rgb(var(--color-secondary) / 0.7));
+      }
+      :root.dark[data-color-theme="sky"] {
+        --color-bg-base: 12 47 73; --bg-gradient: linear-gradient(160deg, #075985, #0369a1);
+        --color-nav-gradient: linear-gradient(135deg, rgb(var(--color-primary) / 0.6), rgb(var(--color-secondary) / 0.6));
+      }
+
+      /* == ROSÉ (NEW) == */
+      :root[data-color-theme="rose"] {
+        --color-primary: 244 63 94; --color-primary-dark: 225 29 72; --color-secondary: 251 146 60; --color-secondary-light: 254 226 209; --color-accent: 168 85 247;
+        --color-bg-base: 255 241 242; --bg-gradient: linear-gradient(160deg, #ffe4e6, #fecdd3);
+        --color-nav-gradient: linear-gradient(135deg, rgb(var(--color-primary) / 0.7), rgb(var(--color-secondary) / 0.7));
+      }
+      :root.dark[data-color-theme="rose"] {
+        --color-bg-base: 48 11 19; --bg-gradient: linear-gradient(160deg, #881337, #9f1239);
+        --color-nav-gradient: linear-gradient(135deg, rgb(var(--color-primary) / 0.6), rgb(var(--color-secondary) / 0.6));
+      }
+
+      /* == TEAL (NEW) == */
+      :root[data-color-theme="teal"] {
+        --color-primary: 20 184 166; --color-primary-dark: 15 118 110; --color-secondary: 14 165 233; --color-secondary-light: 186 230 253; --color-accent: 234 179 8;
+        --color-bg-base: 240 253 250; --bg-gradient: linear-gradient(160deg, #ccfbf1, #5eead4);
+        --color-nav-gradient: linear-gradient(135deg, rgb(var(--color-primary) / 0.7), rgb(var(--color-secondary) / 0.7));
+      }
+      :root.dark[data-color-theme="teal"] {
+        --color-bg-base: 13 41 38; --bg-gradient: linear-gradient(160deg, #0f766e, #0d9488);
+        --color-nav-gradient: linear-gradient(135deg, rgb(var(--color-primary) / 0.6), rgb(var(--color-secondary) / 0.6));
+      }
+      
+      /* == INDIGO (NEW) == */
+      :root[data-color-theme="indigo"] {
+        --color-primary: 99 102 241; --color-primary-dark: 79 70 229; --color-secondary: 34 211 238; --color-secondary-light: 165 243 252; --color-accent: 217 70 239;
+        --color-bg-base: 238 242 255; --bg-gradient: linear-gradient(160deg, #e0e7ff, #a5b4fc);
+        --color-nav-gradient: linear-gradient(135deg, rgb(var(--color-primary) / 0.7), rgb(var(--color-secondary) / 0.7));
+      }
+      :root.dark[data-color-theme="indigo"] {
+        --color-bg-base: 23 21 54; --bg-gradient: linear-gradient(160deg, #3730a3, #4338ca);
+        --color-nav-gradient: linear-gradient(135deg, rgb(var(--color-primary) / 0.6), rgb(var(--color-secondary) / 0.6));
+      }
+
+      /* == LIME (NEW) == */
+      :root[data-color-theme="lime"] {
+        --color-primary: 132 204 22; --color-primary-dark: 101 163 13; --color-secondary: 34 197 94; --color-secondary-light: 187 247 208; --color-accent: 245 158 11;
+        --color-bg-base: 247 254 231; --bg-gradient: linear-gradient(160deg, #ecfccb, #bef264);
+        --color-nav-gradient: linear-gradient(135deg, rgb(var(--color-primary) / 0.7), rgb(var(--color-secondary) / 0.7));
+      }
+      :root.dark[data-color-theme="lime"] {
+        --color-bg-base: 25 38 7; --bg-gradient: linear-gradient(160deg, #4d7c0f, #65a30d);
+        --color-nav-gradient: linear-gradient(135deg, rgb(var(--color-primary) / 0.6), rgb(var(--color-secondary) / 0.6));
+      }
+
+      .cycle-tips-content h3 {
+        display: inline-block;
+        background-color: rgb(var(--color-primary) / 0.1);
+        color: rgb(var(--color-primary-dark));
+        padding: 0.25rem 0.75rem;
+        border-radius: 9999px; /* pill shape */
+        font-size: 1rem;
+        font-weight: 700;
+        margin-top: 1rem;
+        margin-bottom: 0.5rem;
+      }
+      .dark .cycle-tips-content h3 {
+          background-color: rgb(var(--color-primary) / 0.2);
+          color: rgb(var(--color-primary));
+      }
+
+      /* Cycle Calendar Day Styles */
+      .period-day { background-color: rgb(var(--color-accent) / 0.8); color: white; font-weight: bold; }
+      .follicular-day { background-color: rgb(var(--color-primary) / 0.2); }
+      .ovulation-day { background-color: rgb(var(--color-secondary) / 0.3); border: 1px solid rgb(var(--color-secondary)); }
+      .luteal-day { background-color: rgb(var(--color-primary) / 0.1); }
+
+
+    </style>
+    <script>
+      // Aplica o tema e a paleta de cores imediatamente para evitar FOUC
+      try {
+        const theme = localStorage.getItem('theme') || 'system';
+        if (theme === 'dark' || (theme === 'system' && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+          document.documentElement.classList.add('dark');
+        } else {
+          document.documentElement.classList.remove('dark');
+        }
+        
+        const colorTheme = localStorage.getItem('color-theme') || 'emerald';
+        document.documentElement.setAttribute('data-color-theme', colorTheme);
+      } catch (e) {
+        console.error('Failed to apply theme from localStorage', e);
+      }
+    </script>
+  <script type="importmap">
+{
+  "imports": {
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.29.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "recharts": "https://aistudiocdn.com/recharts@^3.4.1"
+  }
+}
+</script>
+</head>
+  <body class="texture-dots">
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+  </body>
+</html>
